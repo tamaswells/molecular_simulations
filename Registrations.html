@@ -1,15 +1,17 @@
+{% load static %}
 <!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>molecular simulation 2019</title>
-<link href="BlogPostAssets/styles/blogPostStyle.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="BlogPostAssets/layui/css/layui.css">
-<script type="text/javascript" src="BlogPostAssets/layui/layui.js"></script>
+
+<link href="{% static "styles/blogPostStyle.css" %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static "layui/css/layui.css" %}">
+<script type="text/javascript" src="{% static "layui/layui.js" %}"></script>
 <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
-<link rel="shortcut icon" href="BlogPostAssets/images/xiaohui.jpg">
-<link rel="bookmark" href="BlogPostAssets/images/xiaohui.jpg" type="image/x-icon">
+<link rel="shortcut icon" href="{% static "images/xiaohui.jpg"%}">
+<link rel="bookmark" href="{% static "images/xiaohui.jpg"%}" type="image/x-icon">
 </head>
 
 <body>
@@ -38,30 +40,31 @@
     </div>
   </header>
 
-  <div id="bannerImage"><img src="BlogPostAssets/images/main_p.png" alt=""/></div>
+  <div id="bannerImage"><img src="{% static "images/main_p.png"%}" alt=""/></div>
 
   <div id="content">
-
     <section id="mainContent"> 
         <br>
         
 
-    <label>Remaining Member Capacity:</label><label ><font color="red">1/60</font></label>
+    {{ members|safe }}
         <hr>
   
         
     <form class="layui-form">
         <div class="layui-form-item">
-            <label class="layui-form-label">First Name</label>
+            <div class="layui-inline">
+                <label class="layui-form-label">First Name<font color='red'> *</font></label>
 
-            <div class="layui-input-block">
-                <input name="userName" type="text" placeholder="First Name" autocomplete="off" class="layui-input" required="">
+                <div class="layui-input-block">
+                    <input name="firstname" type="text" placeholder="First Name" autocomplete="off" class="layui-input" required="">
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">Last Name</label>
-            <div class="layui-input-block">
-                <input name="password" type="password" placeholder="Last Name" autocomplete="off" class="layui-input" required="">
+            <div class="layui-inline">
+                <label class="layui-form-label">Last Name<font color='red'> *</font></label>
+                <div class="layui-input-block">
+                    <input name="lastname" type="text" placeholder="Last Name" autocomplete="off" class="layui-input" required="">
+                </div>
             </div>
         </div>
 
@@ -69,93 +72,103 @@
             <label class="layui-form-label">Gender</label>
             <div class="layui-input-block">
 
-                <input type="radio" name="likeIt" value="1" title="Male">
+                <input type="radio" name="gender" value="1" title="Male" checked="">
 
 
-                <input type="radio" name="likeIt" value="2" title="Female" checked="">
+                <input type="radio" name="gender" value="2" title="Female" >
 
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">Position</label>
-            <div class="layui-input-block">
-                <select name="type" class="">
-                    <option value="">Positon</option>
-                    <option value="0" selected="">Prof.</option>
-                    <option value="1">Associate Prof.</option>
-                    <option value="2">Lecturer</option>
-                    <option value="3">Ph.D</option>
-                    <option value="4">Master</option>
-                    <option value="5">Students</option>
-                    <option value="6">Others</option>
-                </select>
-            </div>
-        </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">Organization or University</label>
+            <label class="layui-form-label">Org or Univ<font color='red'> *</font></label>
 
             <div class="layui-input-block">
-                <input name="userName" type="text" placeholder="" autocomplete="off" class="layui-input" required="">
+                <input name="org" type="text" placeholder="" autocomplete="off" class="layui-input" required="">
             </div>
         </div>
 
         <div class="layui-form-item">
-
             <div class="layui-inline">
-                <label class="layui-form-label">City</label>
+                <label class="layui-form-label">Position<font color='red'> *</font></label>
                 <div class="layui-input-inline">
-                    <input type="text" placeholder="" autocomplete="off" class="layui-input" required="">
+                    <select name="positions" class="">
+                        <option value="">Positon</option>
+                        <option value="0" selected="">Professor</option>
+                        <option value="1">Associate Professor</option>
+                        <option value="2">Lecturer</option>
+                        <option value="3">Ph.D</option>
+                        <option value="4">Master</option>
+                        <option value="5">Students</option>
+                        <option value="6">Others</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="layui-inline">
+                <label class="layui-form-label">City<font color='red'> *</font></label>
+                <div class="layui-input-inline">
+                    <input name="city" type="text" placeholder="" autocomplete="off" class="layui-input" required="">
                 </div>
 
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">State</label>
+                <label class="layui-form-label">State<font color='red'> *</font></label>
                 <div class="layui-input-inline">
-                    <input type="text" placeholder="" autocomplete="off" class="layui-input" required="">
+                    <input name="State"  type="text" placeholder="" autocomplete="off" class="layui-input" required="">
                 </div>
 
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">Country</label>
+                <label class="layui-form-label">Country<font color='red'> *</font></label>
                 <div class="layui-input-inline">
-                    <input type="text" placeholder="" autocomplete="off" class="layui-input" required="">
+                    <input name="country"  type="text" placeholder="" autocomplete="off" class="layui-input" required="">
                 </div>
 
             </div>
         </div>
 
 
-
         <div class="layui-form-item">
-            <label class="layui-form-label">Email Address</label>
+            <label class="layui-form-label">Email Address<font color='red'> *</font></label>
             <div class="layui-input-block">
-                <input name="userName" type="text" placeholder="" autocomplete="off" class="layui-input" required="">
+                <input name="email" type="text" placeholder="" autocomplete="off" class="layui-input" required="">
             </div>
         </div>
 
 
         <hr class="">
-
 
 
         <div class="layui-form-item">
             <label class="layui-form-label">Form of participation</label>
-            <input type="radio" name="radioName" value="1" title="Poster" checked="" class="">
-            <input type="radio" name="radioName" value="2" title="Oral talk" class="">
+            <input type="radio" name="join_Form" value="1" title="Poster" checked="" class="">
+            <input type="radio" name="join_Form" value="2" title="Oral talk" class="">
         </div>
 
-        <div class="layui-form-item">
+        <!-- <div class="layui-form-item">
             <label class="layui-form-label">Abstract</label>
-            <button type="button" class="magicalcoder-layupload layui-btn" mc-attr-drag="true" mc-attr-exts=".pdf">
+            <button type="button" class="magicalcoder-layupload layui-btn" mc-attr-drag="true" >
                 <i class="layui-icon"></i>Upload file
             </button>
+        </div> -->
+
+        <div class="layui-form-item">
+             <label class="layui-form-label">Abstract</label>   
+            <div class="layui-inline">
+
+            <a  href="{% static "templates/MS2019_Template.pdf" %}"><font color='blue'>MS2019 Template for Author</font></a>
+            </div>
+            <div class="layui-inline">
+            <button class="layui-btn layui-btn-sm" onclick="return false;" id="upload_file" mc-attr-drag="true"><i class="layui-icon">&#xe67c;</i>Upload file</button>
+            <label  id='fileupload'>Upload Abstracts</label>
+            <input type="hidden" name="file_name" value="">
+            </div>
+
         </div>
 
-
         <hr class="">
-
 
 
         <div class="layui-form-item">
@@ -163,16 +176,27 @@
                 <div class="layui-inline">
                   <label class="layui-form-label">Arrival Date</label>
                   <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="test1-1" placeholder="yyyy-MM-dd">
+                    <input type="text" name="Arrival_Date" class="layui-input" id="test1-1" placeholder="yyyy-MM-dd">
                   </div>
-                </div>
-            
+                    <label class="layui-form-label">Vehicle<font color='red'> *</font></label>
+                    <div class="layui-input-inline">
+                        <select name="Vehicle" class="">
+                            <option value="">Vehicle</option>
+                            <option value="0" selected="">Airplane</option>
+                            <option value="1">Coach</option>
+                            <option value="2">Train</option>
+                            <option value="3">Self-driving</option>
+                            <option value="6">Others</option>
+                        </select>
+                    </div>                  
+                  
+                </div>        
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">Accommodation Requirement</label>
             <div class="layui-input-block">
-                <select name="type" class="">
+                <select name="Accommodation_Requirement" class="">
                     <option value="">Accommodation Requirements</option>
                     <option value="0" selected="">No requirements</option>
                     <option value="1">Standard single room</option>
@@ -182,22 +206,32 @@
                 </select>
             </div>
         </div>
+        
         <div class="layui-form-item">
             <label class="layui-form-label">Note your accompany</label>
 
             <div class="layui-input-block">
-                <input name="userName" type="text" placeholder="Name" autocomplete="off" class="layui-input">
+                <input name="accompany" type="text" placeholder="If you choose <Standard twin bed room with accompany>" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">Remarks</label>
 
             <div class="layui-input-block">
-                <input name="userName" type="text" placeholder="Special needs or dietary requirements" autocomplete="off" class="layui-input" height="50">
+                <input name="Remarks" type="text" placeholder="Special needs or dietary requirements" autocomplete="off" class="layui-input" height="50">
             </div>
         </div>
+
         <div class="layui-form-item">
-        <button class="layui-btn" style="display:block;margin:0 auto">Submit</button>
+          <label class="layui-form-label">Verifycode</label>
+          <div class="layui-input-inline">
+            <input type="text" id="verifycode" class="layui-input">
+          </div>
+          <img height="40" width="160" src="{% static "templates/verify_code.png" %}" id="img" onclick="reloadImg()">
+        </div>
+
+        <div class="layui-form-item">
+            <button type="button" class="layui-btn" style="display:block;margin:0 auto" onclick="save()">Submit</button>
         </div>
     </form>
 
@@ -208,21 +242,15 @@
       <!--************************************************************************
     侧栏信息：包括编辑；秘书；时间；单位的图片
     ****************************************************************************-->
-      <div class="layui-form">
-                <div class="layui-form-item">
-                <br>
-                    <h2 align="center" style="font-weight:bold" >Organizers</h2>
-                </div>
-      </div>
-
+               <h3 style="display: block;font-size: 1.17em;margin-left: 0px;margin-right: 0px;margin-top: 1em;margin-bottom: 1em;font-weight: bold;font-size:21px" align="center">Organizers</h3>
         <div id="footerImage">
-        <a href="https://www.tandfonline.com/toc/gmos20/current"><img border="0" src="BlogPostAssets/images/M_S.jpg" alt="molecular simulation"/></a>
+        <a href="https://www.tandfonline.com/toc/gmos20/current"><img border="0" src="{% static "images/M_S.jpg"%}" alt="molecular simulation"/></a>
         <hr>        
-        <a href="http://www.zju.edu.cn/english/"><img border="0" src="BlogPostAssets/images/zju.jpg" alt="zju"/></a>
+        <a href="http://www.zju.edu.cn/english/"><img border="0" src="{% static "images/zju.jpg"%}" alt="zju"/></a>
         <hr>
-        <a href="http://www.chem.zju.edu.cn/english/"><img border="0" src="BlogPostAssets/images/zju_chem.PNG" alt="zju_chem"/></a>
+        <a href="http://www.chem.zju.edu.cn/english/"><img border="0" src="{% static "images/zju_chem.PNG"%}" alt="zju_chem"/></a>
         <hr>
-        <a href="http://che.zju.edu.cn/en/"><img border="0" src="BlogPostAssets/images/zju_chem_eng.PNG" alt="zju_chem_eng"/></a>
+        <a href="http://che.zju.edu.cn/en/"><img border="0" src="{% static "images/zju_chem_eng.PNG"%}" alt="zju_chem_eng"/></a>
         </div>
     </section>
   </div>
@@ -232,12 +260,29 @@
       <!--</br>Technical Support: <a href="https://www.sya.org.cn/" target="_blank">SYA Experience science and technology</a>&nbsp;<script data-cfasync="false" src="https://www.icemgd.org/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://s96.cnzz.com/z_stat.php?id=1275844288&web_id=1275844288" language="JavaScript"></script></p>-->
   </div>
 </div>
-
 <script>
-layui.use('form', function(){
+layui.use(['layer','form','upload'], function(){
   var form = layui.form;
-  
-  //各种基于事件的操作，下面会有进一步介绍
+  layer = layui.layer;
+  $ = layui.jquery;  
+
+  var upload = layui.upload;
+   
+   //执行实例
+  var uploadInst = upload.render({
+      elem: '#upload_file' //绑定元素
+      ,url: '/upload_file' //上传接口
+      ,accept:'file'
+      ,done: function(res){
+        //上传完毕回调
+        $('input[name="file_name"]').val(res.msg);
+        document.getElementById("fileupload").innerHTML = res.msg;
+      }
+      ,error: function(){
+        layer.alert(res.msg,{icon:2});
+      }
+  });
+
 });
 
 layui.use('laydate', function(){
@@ -249,7 +294,61 @@ layui.use('laydate', function(){
     ,lang: 'en'
   });
   })
-</script>
 
+    // 重新生成验证码
+  function reloadImg(){
+    $('#img').attr('src',"/get_valid_img"+Math.random()+".php");
+  }
+
+  function save(){
+            var firstname = $.trim($('input[name="firstname"]').val());
+            var lastname = $.trim($('input[name="lastname"]').val());
+            
+            var gender = $.trim($("input[name='gender']:checked").attr("value"));
+            var org = $.trim($('input[name="org"]').val());
+            var city = $.trim($('input[name="city"]').val());
+            var state = $.trim($('input[name="State"]').val());
+            var country = $.trim($('input[name="country"]').val());
+            var email = $.trim($('input[name="email"]').val());
+
+            var join_Form = $.trim($("input[name='join_Form']:checked").attr("value"));            
+            var Arrival_Date = $.trim($('input[name="Arrival_Date"]').val());
+
+            var positions = $('select[name="positions"]').val();
+            var Vehicle = $('select[name="Vehicle"]').val();
+            var Accommodation_Requirement = $('select[name="Accommodation_Requirement"]').val();
+            
+            var accompany = $.trim($('input[name="accompany"]').val());
+            var Remarks = $.trim($('input[name="Remarks"]').val());
+            var file_name=$.trim($('input[name="file_name"]').val());
+            var verifycode = $("#verifycode").val();
+
+			if(firstname==''||lastname==''||org==''||city==''||state==''||country==''||email==''){
+				layer.alert('Please note the mandatory items with star!',{icon:2});
+                 return;
+            }
+
+      if(verifycode==''){
+        layer.alert('Please type in the verifycode!',{icon:2});
+        return;
+      }
+
+			$.post('/post.php',
+              {
+                  csrfmiddlewaretoken:"{{ csrf_token }}",
+                  post_data:"{'firstname':'"+firstname+"',   'lastname':'"+lastname+"',   'verifycode':'"+verifycode+"',   'Vehicle':'"+Vehicle+"',    'gender':'"+gender+"',    'positions':'"+positions+"',  'org':'"+org+"',  'city':'"+city+"',  'State':'"+state+"',  'country':'"+country+"',  'email':'"+email+"',  'join_Form':'"+join_Form +"',  'Arrival_Date':'"+Arrival_Date+"',  'Accommodation_Requirement':'"+Accommodation_Requirement+"',  'accompany':'"+accompany +"',  'Remarks':'"+Remarks+"',  'file_name':'"+file_name +"'}",               
+              },
+        function(res){
+				if(res.code>0){
+                    reloadImg();
+					layer.alert(res.msg,{icon:2});
+				}else{
+					layer.msg(res.msg);
+					setTimeout(function(){parent.window.location.reload();},1000);
+				}
+			},'json');
+		}
+
+</script>
 </body>
 </html>
